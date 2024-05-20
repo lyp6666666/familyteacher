@@ -22,6 +22,8 @@ const routes = [
       { path: 'adminPerson', name: 'AdminPerson', meta: { name: '个人信息' }, component: () => import('../views/manager/AdminPerson') },
       { path: 'password', name: 'Password', meta: { name: '修改密码' }, component: () => import('../views/manager/Password') },
       { path: 'notice', name: 'Notice', meta: { name: '公告信息' }, component: () => import('../views/manager/Notice') },
+      { path: 'teacher', name: 'Teacher', meta: { name: '教员信息' }, component: () => import('../views/manager/Teacher') },
+      { path: 'user', name: 'User', meta: { name: '家长信息' }, component: () => import('../views/manager/User') },
     ]
   },
   {
