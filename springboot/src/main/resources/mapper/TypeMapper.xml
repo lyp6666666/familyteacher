@@ -14,6 +14,7 @@
         from type
         <where>
             <if test="id != null"> and id= #{id}</if>
+            <if test="type != null"> and type= #{type}</if>
             <if test="name != null"> and name like concat('%', #{title}, '%')</if>
         </where>
         order by id
