@@ -5,10 +5,10 @@
 }
 .front-header {
     display: flex;
-    height: 60px;
-    line-height: 60px;
+    height: 59px;
+    line-height: 59px;
     border-bottom: 1px solid #eee;
-    background: white;
+    background-color: #af7fea;
 }
 .front-header-left {
     width: 350px;
@@ -19,11 +19,12 @@
 .front-header-left img, .front-header-dropdown img {
     width: 40px;
     height: 40px;
-    border-radius: 50%
+    border-radius: 50%;
+    border: 2px solid white;
 }
 .front-header-left .title {
     flex: 1;
-    color: #355476;
+    color: white;
     cursor: pointer;
     margin-left: 10px;
     font-size: 20px;
@@ -31,6 +32,7 @@
 }
 .front-header-center {
     flex: 1;
+    overflow: hidden !important;
 }
 .front-header-right {
     width: 200px;
@@ -56,4 +58,23 @@
 .el-menu.el-menu--horizontal {
     border: none !important;
     height: 59px;
+}
+.el-menu-item {
+    background-color: #548ed9 !important;
+    color: white !important;
+}
+
+.el-menu {
+    background-color: #cab0f5;
+}
+
+.el-menu-item.is-active {
+    background-color: #b071d0 !important;
+    font-weight: 550;
+}
+.card {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
 }

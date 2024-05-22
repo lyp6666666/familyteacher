@@ -8,6 +8,8 @@ import com.example.common.Constants;
 import com.example.common.enums.RoleEnum;
 import com.example.entity.Account;
 import com.example.service.AdminService;
+import com.example.service.TeacherService;
+import com.example.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -28,13 +30,21 @@ public class TokenUtils {
     private static final Logger log = LoggerFactory.getLogger(TokenUtils.class);
 
     private static AdminService staticAdminService;
+    private static TeacherService staticTeacherService;
+    private static UserService staticUserService;
 
     @Resource
     AdminService adminService;
+    @Resource
+    TeacherService teacherService;
+    @Resource
+    UserService userService;
 
     @PostConstruct
     public void setUserService() {
         staticAdminService = adminService;
+        staticTeacherService = teacherService;
+        staticUserService = userService;
     }
 
     /**
@@ -59,6 +69,12 @@ public class TokenUtils {
                 String role = userRole.split("-")[1];    // 获取角色
                 if (RoleEnum.ADMIN.name().equals(role)) {
                     return staticAdminService.selectById(Integer.valueOf(userId));
+                }
+                if (RoleEnum.TEACHER.name().equals(role)) {
+                    return staticTeacherService.selectById(Integer.valueOf(userId));
+                }
+                if (RoleEnum.USER.name().equals(role)) {
+                    return staticUserService.selectById(Integer.valueOf(userId));
                 }
             }
         } catch (Exception e) {

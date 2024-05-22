@@ -12,6 +12,12 @@
         <el-form-item prop="confirmPass">
           <el-input prefix-icon="el-icon-lock" placeholder="请确认密码" show-password  v-model="form.confirmPass"></el-input>
         </el-form-item>
+        <el-form-item prop="role">
+          <el-select v-model="form.role" placeholder="请选择角色" style="width: 100%">
+            <el-option label="教员" value="TEACHER"></el-option>
+            <el-option label="家长" value="USER"></el-option>
+          </el-select>
+        </el-form-item>
         <el-form-item>
           <el-button style="width: 100%; background-color: #333; border-color: #333; color: white" @click="register">注 册</el-button>
         </el-form-item>
@@ -65,7 +71,7 @@ export default {
           // 验证通过
           this.$request.post('/register', this.form).then(res => {
             if (res.code === '200') {
-              this.$router.push('/')  // 跳转登录页面
+              this.$router.push('/login')  // 跳转登录页面
               this.$message.success('注册成功')
             } else {
               this.$message.error(res.msg)

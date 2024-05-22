@@ -24,6 +24,7 @@ const routes = [
       { path: 'notice', name: 'Notice', meta: { name: '公告信息' }, component: () => import('../views/manager/Notice') },
       { path: 'teacher', name: 'Teacher', meta: { name: '教员信息' }, component: () => import('../views/manager/Teacher') },
       { path: 'user', name: 'User', meta: { name: '家长信息' }, component: () => import('../views/manager/User') },
+      { path: 'type', name: 'Type', meta: { name: '家教分类' }, component: () => import('../views/manager/Type') },
     ]
   },
   {
@@ -32,7 +33,8 @@ const routes = [
     component: () => import('../views/Front.vue'),
     children: [
       { path: 'home', name: 'Home', meta: { name: '系统首页' }, component: () => import('../views/front/Home') },
-      { path: 'person', name: 'Person', meta: { name: '个人信息' }, component: () => import('../views/front/Person') },
+      { path: 'teacherPerson', name: 'TeacherPerson', meta: { name: '个人信息' }, component: () => import('../views/front/TeacherPerson.vue') },
+      { path: 'userPerson', name: 'UserPerson', meta: { name: '个人信息' }, component: () => import('../views/front/UserPerson.vue') },
     ]
   },
   { path: '/login', name: 'Login', meta: { name: '登录' }, component: () => import('../views/Login.vue') },
