@@ -59,7 +59,7 @@ export default {
             if (res.code === '200') {
               localStorage.setItem("xm-user", JSON.stringify(res.data))  // 存储用户数据
               if (res.data.role ==='ADMIN'){
-                this.$router.push('/')  // 跳转主页
+                location.href='/home' // 跳转主页
               }else{
                 location.href ='/front/home'
               }

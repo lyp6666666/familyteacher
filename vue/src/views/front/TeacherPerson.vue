@@ -2,6 +2,7 @@
   <div class="main-content">
     <el-card style="width: 50%; margin: 30px auto">
       <div style="text-align: right; margin-bottom: 20px">
+        <el-button type="success" @click="infoInit">提交详细资料</el-button>
         <el-button type="primary" @click="updatePassword">修改密码</el-button>
       </div>
       <el-form :model="user" label-width="80px" style="padding-right: 20px">
@@ -50,6 +51,64 @@
         <el-button type="primary" @click="save">确 定</el-button>
       </div>
     </el-dialog>
+    <el-dialog title="详细资料" :visible.sync="dialogVisible2" width="50%" :close-on-click-modal="false" destroy-on-close>
+      <el-form :model="form" label-width="80px" style="padding-right: 20px">
+        <el-form-item label="出生年月" prop="birth">
+          <el-date-picker style="width: 100%"
+                          v-model="form.birth"
+                          type="date"
+                          value-format="yyyy-MM-dd"
+                          placeholder="选择日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="所在学校" prop="school">
+          <el-input v-model="form.school" placeholder="所在学校"></el-input>
+        </el-form-item>
+        <el-form-item label="所学专业" prop="speciality">
+          <el-input v-model="form.speciality" placeholder="所学专业"></el-input>
+        </el-form-item>
+        <el-form-item label="最高学历" prop="education">
+          <el-select v-model="form.education" placeholder="请选择" style="width: 100%">
+            <el-option label="博士后" value="博士后"></el-option>
+            <el-option label="博士" value="博士"></el-option>
+            <el-option label="硕士" value="硕士"></el-option>
+            <el-option label="本科" value="本科"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="所在省份" prop="province">
+          <el-input v-model="form.province" placeholder="所在省份"></el-input>
+        </el-form-item>
+        <el-form-item label="授课方式" prop="type">
+          <el-select v-model="form.type" placeholder="请选择" style="width: 100%">
+            <el-option label="线上授课" value="线上授课"></el-option>
+            <el-option label="线下授课" value="线下授课"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="目前住址" prop="address">
+          <el-input v-model="form.address" placeholder="目前住址"></el-input>
+        </el-form-item>
+        <el-form-item label="可授科目" prop="typeName">
+          <el-select v-model="form.typeName" placeholder="请选择" style="width: 100%">
+            <el-option v-for="item in typeData" :label="item.name" :value="item.name" :key="item.id"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="个人介绍" prop="description">
+          <el-input type="textarea" :rows="3" v-model="form.description" placeholder="个人介绍"></el-input>
+        </el-form-item>
+        <el-form-item label="授课安排" prop="plan">
+          <el-input type="textarea" :rows="4" v-model="form.plan" placeholder="授课安排"></el-input>
+        </el-form-item>
+        <el-form-item label="教员编号" prop="code">{{form.code}}</el-form-item>
+        <el-form-item label="教员星级" prop="code">{{form.star}}</el-form-item>
+        <el-form-item label="教员身份" prop="code">{{form.level}}</el-form-item>
+        <el-form-item label="审核状态" prop="code">{{form.status}}</el-form-item>
+        <el-form-item label="审核理由" prop="code">{{form.reason}}</el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible2 = false">取 消</el-button>
+        <el-button type="primary" @click="submitInfo">提 交</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -68,7 +127,6 @@ export default {
     return {
       user: JSON.parse(localStorage.getItem('xm-user') || '{}'),
       dialogVisible: false,
-
       rules: {
         password: [
           { required: true, message: '请输入原始密码', trigger: 'blur' },
@@ -79,13 +137,56 @@ export default {
         confirmPassword: [
           { validator: validatePassword, required: true, trigger: 'blur' },
         ],
-      }
+      },
+      dialogVisible2: false,
+      form: {},
+      typeData: []
     }
   },
   created() {
-
+    this.loadType()
+    this.loadInfo()
   },
   methods: {
+    loadInfo() {
+      this.$request.get('/info/selectByTeacherId/' + this.user.id).then(res => {
+        if (res.code === '200') {
+          this.form = res.data
+        } else {
+          this.$message.error(res.msg)
+        }
+      })
+    },
+    loadType() {
+      this.$request.get('/type/selectAll').then(res => {
+        if (res.code === '200') {
+          this.typeData = res.data
+        } else {
+          this.$message.error(res.msg)
+        }
+      })
+    },
+    infoInit() {
+      if (!this.form) {
+        this.form = {}
+      }
+      this.dialogVisible2 = true
+    },
+    submitInfo() {
+      this.$confirm('您确定要提交吗？提交后会覆盖原有的信息，需要管理员审核通过后才能生效', '确认提交', {type: "warning"}).then(response => {
+        this.form.teacherId = this.user.id
+        this.form.status = '待审核'
+        this.$request.post('/info/add', this.form).then(res => {
+          if (res.code === '200') {
+            this.$message.success('提交成功，等待管理员审核')
+            this.dialogVisible2 = false
+          } else {
+            this.$message.error(res.msg)
+          }
+        })
+      }).catch(() => {
+      })
+    },
     update() {
       // 保存当前的用户信息到数据库
       this.$request.put('/teacher/update', this.user).then(res => {

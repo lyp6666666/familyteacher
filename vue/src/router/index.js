@@ -25,6 +25,7 @@ const routes = [
       { path: 'teacher', name: 'Teacher', meta: { name: '教员信息' }, component: () => import('../views/manager/Teacher') },
       { path: 'user', name: 'User', meta: { name: '家长信息' }, component: () => import('../views/manager/User') },
       { path: 'type', name: 'Type', meta: { name: '家教分类' }, component: () => import('../views/manager/Type') },
+      { path: 'info', name: 'Info', meta: { name: '教员审核' }, component: () => import('../views/manager/Info') },
     ]
   },
   {

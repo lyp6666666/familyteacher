@@ -4,7 +4,7 @@
       <div style="display: flex;height: 100px">
         <div style="width: 220px; height: 250px; border: 1px solid #cccccc ;border-radius: 5px;padding: 10px ">
           <el-row :gutter="10" style="padding: 5px">
-            <el-col :span="8" style="padding: 0 5px;cursor: pointer" v-for="item in baseTypeData">
+            <el-col :span="8" style="padding: 0 5px;cursor: pointer" v-for="item in baseTypeData" :key="item">
               <img :src="item.img" alt="" style="width: 50px">
               <div style="font-size: 12px;text-align: center">{{item.name}}</div>
             </el-col>
@@ -32,7 +32,7 @@
       <div style="display: flex;height: 100px;margin-top: 160px" >
         <div style="width: 220px; height: 170px; border: 1px solid #cccccc ;border-radius: 5px;padding: 10px ">
           <el-row :gutter="10" style="padding: 5px">
-            <el-col :span="8" style="padding: 0 5px;cursor: pointer" v-for="item in excellentTypeData">
+            <el-col :span="8" style="padding: 0 5px;cursor: pointer" v-for="item in excellentTypeData" :key="item">
               <img :src="item.img" alt="" style="width: 50px">
               <div style="font-size: 12px;text-align: center">{{item.name}}</div>
             </el-col>
@@ -40,14 +40,14 @@
           </el-row>
         </div>
         <div style="flex: 1;height: 170px;margin: 0 7px;border-radius: 5px">
-          <el-rom :gutter="5">
+          <el-row :gutter="5">
             <el-col :span="12">
               <img src="@/assets/imgs/qingjiajiao.png" alt="" style="width:100%;height: 170px">
             </el-col>
             <el-col :span="12">
               <img src="@/assets/imgs/zuojiajiao.png" alt="" style="width:100%;height: 170px">
             </el-col>
-          </el-rom>
+          </el-row>
 
         </div>
         <div style="width: 230px;height: 170px;border: 1px solid #cccccc;border-radius: 5px;text-align: center;padding: 5px 0">
@@ -61,68 +61,12 @@
       </div>
       <div style="margin-top: 30px">
         <el-row :gutter="30">
-          <el-col :span="4" style="text-align: center;margin-bottom: 20px">
+          <el-col :span="4" style="text-align: center;margin-bottom: 20px" v-for="item in infoData">
             <div class="card">
-              <img src="@/assets/imgs/pig.jpg" alt="" style="width: 100px;height: 100px;border-radius: 50%">
-              <div style="font-weight: bold">王养鸡</div>
-              <div style="margin-top: 5px;color: #666666">吃鸡专业</div>
-              <div style="margin-top: 5px;color: #666666">中国鸡量大学</div>
-            </div>
-          </el-col>
-          <el-col :span="4" style="text-align: center;margin-bottom: 20px">
-            <div class="card">
-              <img src="@/assets/imgs/pig.jpg" alt="" style="width: 100px;height: 100px;border-radius: 50%">
-              <div style="font-weight: bold">王养鸡</div>
-              <div style="margin-top: 5px;color: #666666">吃鸡专业</div>
-              <div style="margin-top: 5px;color: #666666">中国鸡量大学</div>
-            </div>
-          </el-col>
-          <el-col :span="4" style="text-align: center;margin-bottom: 20px">
-            <div class="card">
-              <img src="@/assets/imgs/pig.jpg" alt="" style="width: 100px;height: 100px;border-radius: 50%">
-              <div style="font-weight: bold">王养鸡</div>
-              <div style="margin-top: 5px;color: #666666">吃鸡专业</div>
-              <div style="margin-top: 5px;color: #666666">中国鸡量大学</div>
-            </div>
-          </el-col>
-          <el-col :span="4" style="text-align: center;margin-bottom: 20px">
-            <div class="card">
-              <img src="@/assets/imgs/pig.jpg" alt="" style="width: 100px;height: 100px;border-radius: 50%">
-              <div style="font-weight: bold">王养鸡</div>
-              <div style="margin-top: 5px;color: #666666">吃鸡专业</div>
-              <div style="margin-top: 5px;color: #666666">中国鸡量大学</div>
-            </div>
-          </el-col>
-          <el-col :span="4" style="text-align: center;margin-bottom: 20px">
-            <div class="card">
-              <img src="@/assets/imgs/pig.jpg" alt="" style="width: 100px;height: 100px;border-radius: 50%">
-              <div style="font-weight: bold">王养鸡</div>
-              <div style="margin-top: 5px;color: #666666">吃鸡专业</div>
-              <div style="margin-top: 5px;color: #666666">中国鸡量大学</div>
-            </div>
-          </el-col>
-          <el-col :span="4" style="text-align: center;margin-bottom: 20px">
-            <div class="card">
-              <img src="@/assets/imgs/pig.jpg" alt="" style="width: 100px;height: 100px;border-radius: 50%">
-              <div style="font-weight: bold">王养鸡</div>
-              <div style="margin-top: 5px;color: #666666">吃鸡专业</div>
-              <div style="margin-top: 5px;color: #666666">中国鸡量大学</div>
-            </div>
-          </el-col>
-          <el-col :span="4" style="text-align: center;margin-bottom: 20px">
-            <div class="card">
-              <img src="@/assets/imgs/pig.jpg" alt="" style="width: 100px;height: 100px;border-radius: 50%">
-              <div style="font-weight: bold">王养鸡</div>
-              <div style="margin-top: 5px;color: #666666">吃鸡专业</div>
-              <div style="margin-top: 5px;color: #666666">中国鸡量大学</div>
-            </div>
-          </el-col>
-          <el-col :span="4" style="text-align: center;margin-bottom: 20px">
-            <div class="card">
-              <img src="@/assets/imgs/pig.jpg" alt="" style="width: 100px;height: 100px;border-radius: 50%">
-              <div style="font-weight: bold">王养鸡</div>
-              <div style="margin-top: 5px;color: #666666">吃鸡专业</div>
-              <div style="margin-top: 5px;color: #666666">中国鸡量大学</div>
+              <img :src="item.teacherAvatar" alt="" style="width: 100px;height: 100px;border-radius: 50%">
+              <div style="font-weight: bold">{{ item.teacherName }}</div>
+              <div style="margin-top: 5px;color: #666666">{{ item.speciality }}</div>
+              <div style="margin-top: 5px;color: #666666">{{ item.school }}</div>
             </div>
           </el-col>
         </el-row>
@@ -147,14 +91,29 @@ export default {
           require('@/assets/imgs/lun-3.jpg'),
           require('@/assets/imgs/lun-4.jpg')
       ],
+      infoData:[],
     }
   },
   mounted() {
     this.loadBaseType()
     this.loadExcellentTypeData()
+    this.loadInfo()
   },
   // methods：本页面所有的点击事件或者其他函数定义区
   methods: {
+    loadInfo(){
+      this.$request.get('/info/selectAll',{
+        params:{
+          status:'审核通过'
+        }
+      }).then(res=>{
+        if(res.code === '200'){
+          this.infoData=res.data
+        }else{
+          this.$message.error(res.msg)
+        }
+      })
+    },
     loadBaseType(){
       this.$request.get('/type/selectAll',{
         params:{
