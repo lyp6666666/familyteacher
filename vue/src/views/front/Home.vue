@@ -61,8 +61,8 @@
       </div>
       <div style="margin-top: 30px">
         <el-row :gutter="30">
-          <el-col :span="4" style="text-align: center;margin-bottom: 20px" v-for="item in infoData">
-            <div class="card">
+          <el-col :span="4" style="text-align: center;margin-bottom: 20px" v-for="item in infoData" :key="item">
+            <div class="card" @click="navTo('/front/teacherDetail?id='+item.id)">
               <img :src="item.teacherAvatar" alt="" style="width: 100px;height: 100px;border-radius: 50%">
               <div style="font-weight: bold">{{ item.teacherName }}</div>
               <div style="margin-top: 5px;color: #666666">{{ item.speciality }}</div>
@@ -139,6 +139,9 @@ export default {
           this.$message.error(res.msg)
         }
       })
+    },
+    navTo(url){
+      location.href=url
     }
 
   }

@@ -21,10 +21,11 @@
     </select>
 
     <select id="selectById" resultType="com.example.entity.Info">
-        select
-        <include refid="Base_Column_List" />
+        select info.*,
+        teacher.name as teacherName, teacher.avatar as teacherAvatar, teacher.phone as teacherPhone, teacher.email as teacherEmail
         from info
-        where id = #{id}
+        left join teacher on info.teacher_id = teacher.id
+        where info.id = #{id}
     </select>
 
     <delete id="deleteById">

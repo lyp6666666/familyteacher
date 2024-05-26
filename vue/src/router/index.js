@@ -36,6 +36,7 @@ const routes = [
       { path: 'home', name: 'Home', meta: { name: '系统首页' }, component: () => import('../views/front/Home') },
       { path: 'teacherPerson', name: 'TeacherPerson', meta: { name: '个人信息' }, component: () => import('../views/front/TeacherPerson.vue') },
       { path: 'userPerson', name: 'UserPerson', meta: { name: '个人信息' }, component: () => import('../views/front/UserPerson.vue') },
+      { path: 'teacherDetail', name: 'TeacherDetail', meta: { name: '教师详情' }, component: () => import('../views/front/TeacherDetail.vue') },
     ]
   },
   { path: '/login', name: 'Login', meta: { name: '登录' }, component: () => import('../views/Login.vue') },
