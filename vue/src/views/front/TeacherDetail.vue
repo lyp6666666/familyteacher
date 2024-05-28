@@ -56,9 +56,36 @@
         </div>
       </div>
       <div style="margin-top: 40px; text-align: center">
-        <el-button type="primary" style="padding: 15px 40px">预约家教</el-button>
+        <el-button type="primary" style="padding: 15px 40px" @click="reserveInit">预约家教</el-button>
       </div>
     </div>
+    <el-dialog title="预约信息" :visible.sync="fromVisible" width="40%" :close-on-click-modal="false" destroy-on-close>
+      <el-form label-width="100px" style="padding-right: 50px" :model="form">
+        <el-form-item prop="start" label="开始时间">
+          <el-date-picker style="width: 100%"
+                          v-model="form.start"
+                          type="date"
+                          value-format="yyyy-MM-dd"
+                          placeholder="选择日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item prop="end" label="结束时间">
+          <el-date-picker style="width: 100%"
+                          v-model="form.end"
+                          type="date"
+                          value-format="yyyy-MM-dd"
+                          placeholder="选择日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item prop="content" label="预约说明">
+          <el-input type="textarea" :rows="5" v-model="form.content" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="fromVisible = false">取 消</el-button>
+        <el-button type="primary" @click="save">提 交</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -68,13 +95,32 @@ export default {
     return {
       user: JSON.parse(localStorage.getItem('xm-user') || '{}'),
       infoId: this.$route.query.id,
-      infoData: {}
+      infoData: {},
+      form: {},
+      fromVisible: false
     }
   },
   created() {
     this.loadInfo()
   },
   methods: {
+    reserveInit() {
+      this.form = {}
+      this.fromVisible = true
+    },
+    save() {
+      this.form.userId = this.user.id
+      this.form.teacherId = this.infoData.teacherId
+      this.form.status = '待确认'
+      this.$request.post('/reserve/add', this.form).then(res => {
+        if (res.code === '200') {
+          this.$message.success('预约成功，等待教员确认，您可以在我的预约里面查看确认结果')
+          this.fromVisible = false
+        } else {
+          this.$message.error(res.msg)
+        }
+      })
+    },
     loadInfo() {
       this.$request.get('/info/selectById/' + this.infoId).then(res => {
         if (res.code === '200') {
@@ -83,7 +129,8 @@ export default {
           this.$message.error(res.msg)
         }
       })
-    }
+    },
+
   }
 }
 </script>

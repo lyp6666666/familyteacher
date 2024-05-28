@@ -15,6 +15,7 @@ public class Reserve implements Serializable {
     private String end;
     private String content;
 
+    private String status;
     public Integer getId() {
         return id;
     }
@@ -61,5 +62,13 @@ public class Reserve implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

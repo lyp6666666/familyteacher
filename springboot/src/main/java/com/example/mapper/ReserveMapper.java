@@ -1,6 +1,8 @@
 package com.example.mapper;
 
 import com.example.entity.Reserve;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -33,5 +35,8 @@ public interface ReserveMapper {
       * 查询所有
     */
     List<Reserve> selectAll(Reserve reserve);
+
+    @Select("select * from reserve where user_id = #{userId} and teacher_id = #{teacherId}")
+    Reserve selectByUserIdAndTeacherId(@Param("userId") Integer userId, @Param("teacherId") Integer teacherId);
 
 }
