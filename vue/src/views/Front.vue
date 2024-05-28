@@ -11,6 +11,8 @@
         <div class="front-header-nav">
           <el-menu :default-active="$route.path" mode="horizontal" router>
 						<el-menu-item index="/front/home">首页</el-menu-item>
+						<el-menu-item index="/front/info">家教咨询</el-menu-item>
+						<el-menu-item index="/front/reserve" v-if="user.role!=='ADMIN'">我的预约</el-menu-item>
           </el-menu>
         </div>
       </div>
@@ -28,6 +30,9 @@
               </div>
             </div>
             <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item v-if="user.role !== 'ADMIN'">
+                <div style="text-decoration: none" @click="navTo('/front/reserve')">我的预约</div>
+              </el-dropdown-item>
               <el-dropdown-item>
                 <div style="text-decoration: none" @click="toPerson">个人中心</div>
               </el-dropdown-item>
@@ -49,8 +54,15 @@
 
 <script>
 
+import admin from "@/views/manager/Admin.vue";
+
 export default {
   name: "FrontLayout",
+  computed: {
+    admin() {
+      return admin
+    }
+  },
 
   data () {
     return {
@@ -95,7 +107,10 @@ export default {
       if(this.user.role ==="USER"){
         location.href='/front/userPerson'
       }
-    }
+    },
+    navTo(url){
+      location.href=url
+    },
   }
 
 }

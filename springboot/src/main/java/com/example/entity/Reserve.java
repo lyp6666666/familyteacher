@@ -14,8 +14,11 @@ public class Reserve implements Serializable {
     private String start;
     private String end;
     private String content;
-
     private String status;
+    private String userName;
+    private String userPhone;
+    private String teacherName;
+
     public Integer getId() {
         return id;
     }
@@ -70,5 +73,29 @@ public class Reserve implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 }

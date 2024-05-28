@@ -9,11 +9,14 @@
     </sql>
 
     <select id="selectAll" resultType="com.example.entity.Reserve">
-        select
-        <include refid="Base_Column_List" />
+        select reserve.*, user.name as userName ,user.phone as userPhone, teacher.name as teacherName
         from reserve
+        left join user on reserve.user_id = user.id
+        left join teacher on reserve.teacher_id = teacher.id
         <where>
             <if test="id != null"> and id= #{id}</if>
+            <if test="userId != null"> and reserve.user_id= #{userId}</if>
+            <if test="teacherId != null"> and reserve.teacher_id= #{teacherId}</if>
         </where>
         order by id desc
     </select>
