@@ -26,6 +26,7 @@ const routes = [
       { path: 'user', name: 'User', meta: { name: '家长信息' }, component: () => import('../views/manager/User') },
       { path: 'type', name: 'Type', meta: { name: '家教分类' }, component: () => import('../views/manager/Type') },
       { path: 'info', name: 'Info', meta: { name: '教员审核' }, component: () => import('../views/manager/Info') },
+      { path: 'reserve', name: 'Reserve', meta: { name: '教员审核' }, component: () => import('../views/manager/Reserve') },
     ]
   },
   {

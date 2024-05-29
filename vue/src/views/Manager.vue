@@ -45,6 +45,7 @@
             <el-menu-item index="/notice">公告信息</el-menu-item>
             <el-menu-item index="/type">家教分类</el-menu-item>
             <el-menu-item index="/info">教员审核</el-menu-item>
+            <el-menu-item index="/reserve">家教预约</el-menu-item>
           </el-submenu>
 
           <el-submenu index="user">
